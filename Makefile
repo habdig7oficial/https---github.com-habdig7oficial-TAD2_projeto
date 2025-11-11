@@ -1,5 +1,5 @@
 bytecode:
-	javac Programm.java
+	javac tokens/BaseToken.java Program.java
 
 run: bytecode
-	java Programm
+	java Program
