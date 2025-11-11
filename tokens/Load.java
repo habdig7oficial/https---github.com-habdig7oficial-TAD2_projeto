@@ -8,6 +8,7 @@ public class Load extends BaseToken {
     @Override
     void callMethod(String... args) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'callMethod'");
+        //throw new UnsupportedOperationException("Unimplemented method 'callMethod'");
+        System.out.println("Hello");
     }
 }

@@ -1,5 +1,7 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import tokens.*;
+import java.util.Arrays.*;
 
 public class Program {
     private static Scanner io = new Scanner(System.in);
@@ -24,15 +26,19 @@ public class Program {
     };
 
     // Nicht Vergiss die Exception im Main beseitigen
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
        while (true) {
             System.out.print("> ");
             String input[] = io.nextLine().toUpperCase().split("\s");
 
-            for (String i : input) {
-               short location = search(tokens, i.trim());
+            for (int i = 0; i < input.length; i++) {
+               short location = search(tokens, input[i].trim());
                if(location != -1){
-                    tokens[location].call(input);
+                    try {
+                        tokens[location].call(Arrays.copyOfRange(input, i + 1, input.length));
+                    } catch (Exception e) {
+                        System.out.println("--- ERROR ---\n" + e.getMessage());
+                    }
                }
                else 
                     System.out.println("false");

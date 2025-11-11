@@ -1,5 +1,7 @@
 package tokens;
 
+import exceptions.*;
+
 public abstract class BaseToken{
     private String name;
 
@@ -18,7 +20,9 @@ public abstract class BaseToken{
 
     public void call(String ...args) throws Exception{
         if(args.length < argsMin || args.length > argsMax)
-            throw new RuntimeException(String.format("Expect BETWEEN %d and %d\nBut %d was given", argsMin, argsMax, args.length));
+            throw new InvalidArgument(this.argsMin, this.argsMax, args.length);
+
+        callMethod(args);
     }
 
     abstract void callMethod(String ...args);
