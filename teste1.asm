@@ -1,15 +1,14 @@
 mov a 5
-mov b 3
-mov b x
-add c 10
+mov b 7
+
+add a b
+inc a
 
 
-inc 10
-jnz a linha20
-mul a b c
+dec b
+jnz b 30
+mov c a
+sub c 2
 
+out c
 
-
-
-jnz a 90
-out 9999

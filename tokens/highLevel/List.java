@@ -15,7 +15,7 @@ public class List extends BaseHighLevel {
     protected void callMethod(String... args) {
         //System.out.println(this.getAsmList().getFirst().getElement());
         for (Instruction e : getAsmList()) {
-            System.out.println(e);
+            System.out.println(String.format("%d - %s", e.getLineNumber(), e));
         }
     }
 }

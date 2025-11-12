@@ -9,47 +9,68 @@ import java.util.Scanner;
 import lib.Searcher;
 import lib.DataStructs.LinkedList;
 import tokens.BaseToken;
-import tokens.asm.Instruction;
-import tokens.asm.Mov;
+import tokens.asm.*;
 
 public class Load extends BaseHighLevel {
-    public Load(String name, short argsMin, short argsMax, LinkedList<Instruction> asmList){
+    private StringBuilder path;
+    public Load(String name, short argsMin, short argsMax, LinkedList<Instruction> asmList, StringBuilder path){
         super(name, argsMax, argsMax, asmList);
+        this.path = path;
     }
-
-    Instruction instructionSet[] = {
-        new Mov("MOV", 0)
-    };
 
     @Override
     protected void callMethod(String... args) throws Exception {
         String currentDir = System.getProperty("user.dir");
 
-        Scanner file;
+        Scanner scanFile;
         try {
-            file = new Scanner(new File(args[0]));
+            this.path.append(args[0]);
+            scanFile = new Scanner(new File(this.path.toString()));
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException(String.format("File %s was not find\nSearch on dir %s", args[0], currentDir));
         }
 
 
-        for (int i = 0; file.hasNextLine(); i++) {
-            String line = file.nextLine();
+        for (int i = 0; scanFile.hasNextLine(); i++) {
+            String line = scanFile.nextLine();
             if (!line.isEmpty()) {
 
                 String asmCommands[] = line.split("\s");
 
                 Searcher<Instruction, String> s = new Searcher<Instruction, String>();
 
-                short location = s.search(instructionSet, asmCommands[0].trim().toUpperCase());
+                short location = s.search(InstructionSet.instructionSet, asmCommands[0].trim().toUpperCase());
                 if(location != -1){
                     try {
                         Instruction newInstruction = null;
-                        switch (instructionSet[location]) {
+                        switch (InstructionSet.instructionSet[location]) {
                             case Mov n:
                                     newInstruction = new Mov(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
                                 break;
-                        
+                            case Inc n:
+                                    newInstruction = new Inc(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
+                                break;
+                            case Dec n:
+                                    newInstruction = new Dec(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
+                                break;
+                            case Add n:
+                                    newInstruction = new Add(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
+                                break;
+                            case Sub n:
+                                    newInstruction = new Sub(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
+                                break;
+                            case Mul n:
+                                    newInstruction = new Mul(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
+                                break;
+                            case Div n:
+                                    newInstruction = new Div(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
+                                break;
+                            case Jnz n:
+                                    newInstruction = new Jnz(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
+                                break;
+                            case Out n:
+                                    newInstruction = new Out(n.getName(), i, Arrays.copyOfRange(asmCommands, 1, asmCommands.length));
+                                break;
                             default:
                         }
                         this.getAsmList().append(newInstruction);
@@ -66,12 +87,12 @@ public class Load extends BaseHighLevel {
                 //this.getAsmList().append();
             }
                 
-            //System.out.println(file.nextLine());
+            //System.out.println(scanFile.nextLine());
         }
 
         System.out.println(this.getAsmList());
         System.out.println(currentDir + args[0]);
 
-        file.close();
+        scanFile.close();
     }
 }

@@ -11,7 +11,11 @@ public class Delete extends BaseHighLevel {
 
     @Override
     protected void callMethod(String... args) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'callMethod'");
+        if (args.length == 1) {
+            int line = Integer.parseInt(args[0]);
+        }
+        else if (args.length == 2){
+
+        }
     }
 }
