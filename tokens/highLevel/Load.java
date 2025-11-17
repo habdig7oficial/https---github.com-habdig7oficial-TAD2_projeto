@@ -20,14 +20,18 @@ public class Load extends BaseHighLevel {
 
     @Override
     protected void callMethod(String... args) throws Exception {
+        this.path.setLength(0);
+        getAsmList().clean();
         String currentDir = System.getProperty("user.dir");
-
         Scanner scanFile;
         try {
             this.path.append(args[0]);
             scanFile = new Scanner(new File(this.path.toString()));
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException(String.format("File %s was not find\nSearch on dir %s", args[0], currentDir));
+        }
+        catch(Exception e){
+            throw new Exception(e.getMessage());
         }
 
 

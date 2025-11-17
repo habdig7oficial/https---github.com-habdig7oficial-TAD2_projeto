@@ -81,6 +81,12 @@ public class LinkedList <Generic> implements Iterable<Generic> {
         return false;
     }
 
+    public void clean(){
+        this.length = 0;
+        this.leaf = null;
+        this.root = null;
+    }
+
     @Override
     public Iterator<Generic> iterator(){
         return new LinkedListIterator<Generic>(this);
