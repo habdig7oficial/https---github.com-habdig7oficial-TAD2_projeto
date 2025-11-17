@@ -5,6 +5,7 @@ import java.util.Iterator;
 import lib.DataStructs.LinkedList;
 import tokens.BaseToken;
 import tokens.asm.Instruction;
+import tokens.asm.Jnz;
 
 public class Run extends BaseHighLevel {
     public Run(String name, short argsMin, short argsMax, LinkedList<Instruction> asmList){
@@ -16,6 +17,10 @@ public class Run extends BaseHighLevel {
     @Override
     protected void callMethod(String... args) {
 
+        Iterator<Instruction> it = getAsmList().iterateToIndex(1);
+
+        System.out.println("It " + it.next());
+
         int[] memory = new int[this.regNum];
         int ptr;
 
@@ -24,7 +29,10 @@ public class Run extends BaseHighLevel {
             Instruction e = iter.next();
             try {
                 ptr = Instruction.translateAddr(e.getArgs()[0].charAt(0));
-                e.exec(memory, ptr);
+                if (e instanceof Jnz)
+                    Jnz.class.cast(e).exec(i, getAsmList(), iter);
+                else
+                    e.exec(memory, ptr);
                 System.out.println(ptr);
             } catch (Exception e1) {
                 e1.printStackTrace();

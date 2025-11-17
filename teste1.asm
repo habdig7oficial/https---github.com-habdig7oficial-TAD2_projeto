@@ -6,7 +6,7 @@ inc a
 
 
 dec b
-jnz b 30
+jnz b 4
 mov c a
 sub c 2
 

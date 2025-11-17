@@ -2,6 +2,8 @@ package lib.DataStructs;
 
 import java.util.Iterator;
 
+import tokens.asm.Instruction;
+
 public class LinkedList <Generic> implements Iterable<Generic> {
 
     private Node<Generic> root = null;
@@ -85,6 +87,14 @@ public class LinkedList <Generic> implements Iterable<Generic> {
         this.length = 0;
         this.leaf = null;
         this.root = null;
+    }
+
+    public Iterator<Generic> iterateToIndex(int index){
+        Iterator<Generic> iter = this.iterator();
+        for (int i = 0; iter.hasNext() && i < index; i++) {
+            iter.next();
+        }
+        return iter;
     }
 
     @Override
