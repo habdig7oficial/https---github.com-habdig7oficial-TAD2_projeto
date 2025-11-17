@@ -10,4 +10,9 @@ public class Out extends Instruction {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'callMethod'");
     }
+
+    @Override
+    public void exec(int[] memory, int index) {
+        System.out.println(String.format("IO: %d", memory[index]));
+    }
 }

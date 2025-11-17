@@ -10,4 +10,10 @@ public class Jnz extends Instruction {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'callMethod'");
     }
+
+    @Override
+    public void exec(int[] memory, int index) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'exec'");
+    }
 }

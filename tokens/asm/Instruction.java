@@ -18,6 +18,30 @@ abstract public class Instruction extends BaseToken {
         return args;
     }
 
+    public int translateArg(int index, int[] memory) throws Exception{
+        int value;
+        try {
+            value = Integer.parseInt(getArgs()[1]);
+        }
+        catch(NumberFormatException err){
+            value = Instruction.translateAddr(getArgs()[1].charAt(0));
+            value = memory[value];
+        }
+        return value;
+    }
+
+    public static int translateAddr(char reg) throws Exception {
+        int addr = (int) reg - (int) 'a';
+
+        if (addr < 0) {
+            throw new Exception(String.format("Register %c in addr %d is invalid", reg, addr));
+        }
+
+        return addr;
+    }
+
+    abstract public void exec(int[] memory, int index) throws Exception;
+
     @Override
     public String toString() {
         String strBuilder = getName();

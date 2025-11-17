@@ -10,4 +10,9 @@ public class Sub extends Instruction {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'callMethod'");
     }
+
+    @Override
+    public void exec(int[] memory, int index) throws Exception {
+        memory[index] -= translateArg(1,memory);
+    }
 }
