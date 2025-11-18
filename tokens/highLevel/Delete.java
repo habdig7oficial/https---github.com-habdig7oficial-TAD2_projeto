@@ -11,7 +11,7 @@ public class Delete extends BaseHighLevel {
 
     @Override
     protected void callMethod(String... args) {
-        /*
+        
         int i = 0;
         if (args.length == 1) {
             int line = Integer.parseInt(args[0]);
@@ -21,10 +21,16 @@ public class Delete extends BaseHighLevel {
             } else (line > getAsmList().getLast().getElement().getLine()){
                 throw new Exception(e.getMessage("Invalid line!"));
 
-            } else if (line == 0) {
-                
+            if (line == 0) {
+                var first = getAsmList().getFirst();
+                if (first.getNext() == null) {                    
+                    getAsmList().clean(); 
+                } else {
+                    var next = first.getNext();
+                    first.setElement(next.getElement());
+                    first.setNext(next.getNext());
+                }
             }
-
 
 
         }
