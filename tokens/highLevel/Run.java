@@ -30,7 +30,11 @@ public class Run extends BaseHighLevel {
             try {
                 ptr = Instruction.translateAddr(e.getArgs()[0].charAt(0));
                 if (e instanceof Jnz)
-                    Jnz.class.cast(e).exec(i, getAsmList(), iter);
+                    {
+                        System.out.println(iter);
+                        iter = Jnz.class.cast(e).exec(memory, ptr, getAsmList(), iter);
+                        System.out.println(iter);
+                    }
                 else
                     e.exec(memory, ptr);
                 System.out.println(ptr);

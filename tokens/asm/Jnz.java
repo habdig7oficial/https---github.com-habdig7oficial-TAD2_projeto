@@ -3,6 +3,7 @@ package tokens.asm;
 import java.util.Iterator;
 
 import lib.DataStructs.LinkedList;
+import lib.DataStructs.Node;
 
 public class Jnz extends Instruction {
     public Jnz(String name, int lineNumber, String ...args) {
@@ -20,8 +21,14 @@ public class Jnz extends Instruction {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'exec'");
     }
-    public void exec(int index, LinkedList<Instruction> list, Iterator<Instruction> iter) {
-        Instruction dummy = new Jnz(getName(), index, getArgs());
-        iter = list.iterateToIndex(list.search(dummy));
+    public Iterator<Instruction> exec(int[] memory, int index, LinkedList<Instruction> list, Iterator<Instruction> iter) {
+        if (memory[index] == 0) 
+            return iter;
+        System.out.println(String.format("i: %d\n arg1: %d", memory[index], Integer.parseInt(getArgs()[1])));
+        Iterator<Instruction> newIterator = list.iterator();
+        for (int i = 0; newIterator.hasNext() && i <= index; i++) 
+            newIterator.next();
+
+        return newIterator;
     }
 }

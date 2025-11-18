@@ -2,7 +2,7 @@ package lib.DataStructs;
 
 import java.util.Iterator;
 
-public class LinkedListIterator<Generic extends Comparable<Generic>> implements Iterator<Generic>{
+public class LinkedListIterator<Generic> implements Iterator<Generic>{
     Node<Generic> currentNode = null;
     public LinkedListIterator(LinkedList<Generic> list){
         this.currentNode = list.getFirst();
