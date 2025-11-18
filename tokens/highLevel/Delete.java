@@ -1,43 +1,45 @@
 package tokens.highLevel;
 
-import lib.DataStructs.LinkedList;
+import lib.DataStructs.*;
 import tokens.BaseToken;
 import tokens.asm.Instruction;
 
 public class Delete extends BaseHighLevel {
     public Delete(String name, short argsMin, short argsMax, LinkedList<Instruction> asmList){
-        super(name, argsMax, argsMax, asmList);
+        super(name, argsMin, argsMax, asmList);
     }
 
     @Override
-    protected void callMethod(String... args) {
+    protected void callMethod(String... args) throws Exception {
         
-        int i = 0;
         if (args.length == 1) {
             int line = Integer.parseInt(args[0]);
 
             if (getAsmList().getLength() == 0) {
-                throw new Exception(e.getMessage("File empty!"));
-            } else (line > getAsmList().getLast().getElement().getLine()){
-                throw new Exception(e.getMessage("Invalid line!"));
+                throw new Exception("File empty!");
+            } else if (line > getAsmList().getLast().getElement().getLineNumber())
+                throw new Exception("Invalid line!");
 
-            if (line == 0) {
-                var first = getAsmList().getFirst();
-                if (first.getNext() == null) {                    
+            Node<Instruction> firstLine = this.getAsmList().getFirst();            
+            if (line == firstLine.getElement().getLineNumber()) {
+                if (firstLine.getNext() == null) {                    
                     getAsmList().clean(); 
-                } else {
-                    var next = first.getNext();
-                    first.setElement(next.getElement());
-                    first.setNext(next.getNext());
+                }{
+                    var next = firstLine.getNext();
+                    firstLine.setElement(next.getElement());
+                    firstLine.setNext(next.getNext());
                 }
             }
 
+             Node<Instruction> lastLine = this.getAsmList().getLast();
+             if (line == lastLine.getElement().getLineNumber()) {
+               //(lastLine.getElement().getLineNumber() - 1)
+                //getAsmList().setLeaf(getAsmList().getElement().getNext());
 
-        }
+             }
 
-        /*else if (args.length == 2){
-            
-        }
-        */
+        } /*else if(args.length == 2) {
+
+        }*/
     }
 }

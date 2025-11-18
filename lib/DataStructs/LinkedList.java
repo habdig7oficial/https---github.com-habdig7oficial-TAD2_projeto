@@ -14,7 +14,7 @@ public class LinkedList <Generic> implements Iterable<Generic> {
     public int getLength() {
         return length;
     }
-
+    
     public void append(Generic element){
         if(root == null){
             root = new Node<Generic>(element);
@@ -130,6 +130,11 @@ public class LinkedList <Generic> implements Iterable<Generic> {
             e = e.getNext();
         }
         return str;
+    }
+
+    /* REMOVER ISSO DEPOIS */
+    public void setLeaf(Node<Generic> leaf) {
+        this.leaf = leaf;
     }
 }
 

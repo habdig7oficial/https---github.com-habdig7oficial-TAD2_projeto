@@ -3,6 +3,7 @@ package tokens.highLevel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 import lib.DataStructs.LinkedList;
 import tokens.BaseToken;
@@ -17,9 +18,28 @@ public class Save extends BaseHighLevel {
 
     @Override
     protected void callMethod(String... args) throws Exception {
-        if(args[0] != null){
+        if(args.length > 0){
             path.setLength(0);
             path.append(args[0]);
+        }
+        else{
+            if (path.length() == 0)
+                throw new Exception("No file provided");
+
+            Scanner io = new Scanner(System.in);
+            do {
+                System.out.print("Overwrite file y/n: ");
+                char line = io.next().charAt(0);
+                if (line == 'y') {
+                    System.out.println("Writing File...");
+                    break;
+                }
+                else if (line == 'n'){
+                    System.out.println("File not Modified");
+                    return;
+                }
+                System.out.println(line);
+            } while (true);
         }
         
         PrintWriter writer;
