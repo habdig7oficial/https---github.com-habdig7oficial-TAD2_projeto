@@ -29,8 +29,15 @@ public class Save extends BaseHighLevel {
             throw new FileNotFoundException(String.format("File %s was not find\nSearch on dir %s", args[0], System.getProperty("user.dir")));
         }
 
+        Instruction last = null;
         for (Instruction asmInstruction : getAsmList()) {
+            int blankSpace = asmInstruction.getLineNumber() - (last != null? last.getLineNumber() : 0);
+            while (blankSpace > 1) {
+                writer.print("\n");
+                blankSpace--;
+            }
             writer.println(asmInstruction);
+            last = asmInstruction;
         }
 
         writer.close();
