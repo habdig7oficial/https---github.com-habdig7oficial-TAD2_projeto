@@ -1,0 +1,9 @@
+mov a 4
+mov b 1
+
+
+
+mul b a
+out b
+dec a
+jnz a 3

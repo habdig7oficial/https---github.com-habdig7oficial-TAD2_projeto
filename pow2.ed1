@@ -1,0 +1,9 @@
+mov a 1
+mov b 2
+mov i 10
+
+mul a b 
+out a 
+dec i 
+out i
+jnz i 4
