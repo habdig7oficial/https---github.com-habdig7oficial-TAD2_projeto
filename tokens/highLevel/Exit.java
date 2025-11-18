@@ -6,7 +6,7 @@ import tokens.asm.Instruction;
 
 public class Exit extends BaseHighLevel {
     public Exit(String name, short argsMin, short argsMax, LinkedList<Instruction> asmList){
-        super(name, argsMax, argsMax, asmList);
+        super(name, argsMin, argsMax, asmList);
     }
 
     @Override

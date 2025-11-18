@@ -14,7 +14,7 @@ import tokens.asm.*;
 public class Load extends BaseHighLevel {
     private StringBuilder path;
     public Load(String name, short argsMin, short argsMax, LinkedList<Instruction> asmList, StringBuilder path){
-        super(name, argsMax, argsMax, asmList);
+        super(name, argsMin, argsMax, asmList);
         this.path = path;
     }
 

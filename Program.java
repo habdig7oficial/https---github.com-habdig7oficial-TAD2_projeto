@@ -12,8 +12,6 @@ import tokens.*;
 import tokens.asm.Instruction;
 import tokens.highLevel.*;
 
-import java.util.Arrays.*;
-import java.io.File;
 
 public class Program {
     private static Scanner io = new Scanner(System.in);
@@ -26,7 +24,7 @@ public class Program {
         new Load("LOAD", (short) 1,(short) 1, asmList, filePtr),
         new List("LIST", (short) 0, (short) 0, asmList),
         new Run("RUN", (short) 0, (short) 0, asmList),
-        new Insert("INS", (short) 2, (short) 2, asmList),
+        new Insert("INS", (short) 2, (short) 4, asmList),
         new Delete("DEL", (short) 1, (short) 2, asmList),
         new Save("SAVE", (short) 0, (short) 1, asmList, filePtr),
         new Exit("EXIT", (short) 0, (short) 0, asmList)

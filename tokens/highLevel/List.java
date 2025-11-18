@@ -8,7 +8,7 @@ import tokens.asm.Instruction;
 
 public class List extends BaseHighLevel {
     public List(String name, short argsMin, short argsMax, LinkedList<Instruction> asmList){
-        super(name, argsMax, argsMax, asmList);
+        super(name, argsMin, argsMax, asmList);
     }
 
     @Override

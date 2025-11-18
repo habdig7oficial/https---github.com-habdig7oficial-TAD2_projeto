@@ -9,7 +9,7 @@ import tokens.asm.Jnz;
 
 public class Run extends BaseHighLevel {
     public Run(String name, short argsMin, short argsMax, LinkedList<Instruction> asmList){
-        super(name, argsMax, argsMax, asmList);
+        super(name, argsMin, argsMax, asmList);
     }
 
     private final int regNum = 26;
