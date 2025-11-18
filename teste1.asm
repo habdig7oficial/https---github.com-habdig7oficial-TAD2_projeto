@@ -12,45 +12,8 @@ inc a
 
 
 dec b
-jnz b 4
+jnz b 10
 mov c a
 sub c 2
 
 out c
-
-
-
-
-
-
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a
-out a

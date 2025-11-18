@@ -20,10 +20,6 @@ public class Run extends BaseHighLevel {
         if (getAsmList().getLength() == 0) 
             throw new Exception("There are no asm commands to execute");
 
-        Iterator<Instruction> it = getAsmList().iterateToIndex(2);
-
-        System.out.println("It " + it.next());
-
         int[] memory = new int[this.regNum];
         int ptr;
 
