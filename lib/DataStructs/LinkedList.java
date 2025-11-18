@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import tokens.asm.Instruction;
 
-public class LinkedList <Generic> implements Iterable<Generic> {
+public class LinkedList <Generic extends Comparable<Generic>> implements Iterable<Generic> {
 
     private Node<Generic> root = null;
     private Node<Generic> leaf = null;
@@ -81,6 +81,18 @@ public class LinkedList <Generic> implements Iterable<Generic> {
         }
         
         return false;
+    }
+
+     public int search(Generic element) {
+        Node<Generic> e = root; 
+        
+        for(int i = 0; i < this.length; i++){ 
+            if(e.getElement().compareTo(element) == 0){
+                return i;
+            }
+            e = e.getNext();
+        }
+        return -1;
     }
 
     public void clean(){

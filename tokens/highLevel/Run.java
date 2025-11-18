@@ -17,7 +17,7 @@ public class Run extends BaseHighLevel {
     @Override
     protected void callMethod(String... args) {
 
-        Iterator<Instruction> it = getAsmList().iterateToIndex(1);
+        Iterator<Instruction> it = getAsmList().iterateToIndex(2);
 
         System.out.println("It " + it.next());
 

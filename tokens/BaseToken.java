@@ -51,4 +51,9 @@ public abstract class BaseToken{
     public String toString(){
         return String.format("%s", this.name);
     }
+
+    public int compareTo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    }
 }

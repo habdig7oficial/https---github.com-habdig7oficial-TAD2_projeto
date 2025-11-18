@@ -2,7 +2,7 @@ package tokens.asm;
 
 import tokens.BaseToken;
 
-abstract public class Instruction extends BaseToken {
+abstract public class Instruction extends BaseToken implements Comparable<Instruction> {
     private int lineNumber;
     private String args[];
     public Instruction(String name, short argsMin, short argsMax, int lineNumber, String... args){
@@ -41,6 +41,16 @@ abstract public class Instruction extends BaseToken {
     }
 
     abstract public void exec(int[] memory, int index) throws Exception;
+
+    @Override
+    public int compareTo(Instruction compared){
+        if (this.lineNumber == compared.lineNumber) 
+            return 0;
+        else if(this.lineNumber < compared.lineNumber)
+            return -1;
+        else 
+            return 1;
+    }
 
     @Override
     public String toString() {

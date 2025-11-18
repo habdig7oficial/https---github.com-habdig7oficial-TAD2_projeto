@@ -21,6 +21,7 @@ public class Jnz extends Instruction {
         throw new UnsupportedOperationException("Unimplemented method 'exec'");
     }
     public void exec(int index, LinkedList<Instruction> list, Iterator<Instruction> iter) {
-        iter = list.iterateToIndex(index);
+        Instruction dummy = new Jnz(getName(), index, getArgs());
+        iter = list.iterateToIndex(list.search(dummy));
     }
 }

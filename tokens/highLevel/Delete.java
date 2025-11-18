@@ -11,11 +11,23 @@ public class Delete extends BaseHighLevel {
 
     @Override
     protected void callMethod(String... args) {
+        /*
+         * 
+         *        
+          int i = 0;
         if (args.length == 1) {
             int line = Integer.parseInt(args[0]);
-        }
-        else if (args.length == 2){
+
+            if (getAsmList().getLength() == 0) {
+                throw new Exception(e.getMessage("File empty!"));
+            }
+
+            
 
         }
+        else if (args.length == 2){
+            
+        }
+         */
     }
 }
