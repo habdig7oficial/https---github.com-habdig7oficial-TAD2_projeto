@@ -15,7 +15,10 @@ public class Run extends BaseHighLevel {
     private final int regNum = 26;
 
     @Override
-    protected void callMethod(String... args) {
+    protected void callMethod(String... args) throws Exception {
+
+        if (getAsmList().getLength() == 0) 
+            throw new Exception("There are no asm commands to execute");
 
         Iterator<Instruction> it = getAsmList().iterateToIndex(2);
 

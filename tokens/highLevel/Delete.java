@@ -33,13 +33,22 @@ public class Delete extends BaseHighLevel {
 
              Node<Instruction> lastLine = this.getAsmList().getLast();
              if (line == lastLine.getElement().getLineNumber()) {
-               //(lastLine.getElement().getLineNumber() - 1)
-                //getAsmList().setLeaf(getAsmList().getElement().getNext());
+                Node<Instruction> p1 = firstLine;
+                Node<Instruction> p2 = null;
+
+                while (p1.getElement().getLineNumber() != lastLine.getElement().getLineNumber()) {
+                    p2 = p1;
+                    p1 = p1.getNext();
+                }
+                p2.setNext(null);
+                getAsmList().setLeaf(p2);
 
              }
 
         } /*else if(args.length == 2) {
 
         }*/
+
+        System.out.println("Lines deleted Successfully");
     }
 }

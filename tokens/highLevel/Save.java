@@ -21,11 +21,11 @@ public class Save extends BaseHighLevel {
         if(args.length > 0){
             path.setLength(0);
             path.append(args[0]);
-        }
-        else{
-            if (path.length() == 0)
-                throw new Exception("No file provided");
-
+        }            
+        if (path.length() == 0)
+            throw new Exception("No file provided");
+        File file = new File(this.path.toString());
+        if(file.exists() && args.length > 0){
             Scanner io = new Scanner(System.in);
             do {
                 System.out.print("Overwrite file y/n: ");
@@ -44,7 +44,7 @@ public class Save extends BaseHighLevel {
         
         PrintWriter writer;
         try {
-            writer = new PrintWriter(new File(this.path.toString()));
+            writer = new PrintWriter(file);
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException(String.format("File %s was not find\nSearch on dir %s", args[0], System.getProperty("user.dir")));
         }

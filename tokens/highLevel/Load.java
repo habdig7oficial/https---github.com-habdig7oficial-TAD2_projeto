@@ -20,6 +20,22 @@ public class Load extends BaseHighLevel {
 
     @Override
     protected void callMethod(String... args) throws Exception {
+        if (getAsmList().getLength() > 0) {
+            Scanner io = new Scanner(System.in);
+            do {
+                System.out.print("Clean Memory and Load new File y/n: ");
+                char line = io.next().charAt(0);
+                if (line == 'y') {
+                    System.out.println("Loading File...");
+                    break;
+                }
+                else if (line == 'n'){
+                    System.out.println("File not Loaded");
+                    return;
+                }
+                System.out.println(line);
+            } while (true);
+        }
         this.path.setLength(0);
         getAsmList().clean();
         String currentDir = System.getProperty("user.dir");
