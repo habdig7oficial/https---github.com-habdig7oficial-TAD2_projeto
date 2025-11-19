@@ -21,10 +21,13 @@ public class Jnz extends Instruction {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'exec'");
     }
-    public Iterator<Instruction> exec(int[] memory, int index, LinkedList<Instruction> list, Iterator<Instruction> iter) {
+    public Iterator<Instruction> exec(int[] memory, int index, LinkedList<Instruction> list, Iterator<Instruction> iter) throws RuntimeException {
+        int line = Integer.parseInt(getArgs()[1]);
+        if (line < 0 ) 
+            throw new RuntimeException("Invalid Line");
         if (memory[index] == 0) 
             return iter;
-        System.out.println(String.format("i: %d\n arg1: %d", memory[index], Integer.parseInt(getArgs()[1])));
+        System.out.println(String.format("i: %d\n arg1: %d", memory[index], line));
         Iterator<Instruction> newIterator = list.iterator();
         for (int i = 0; newIterator.hasNext() && i < Integer.parseInt(getArgs()[1]) - 1; i++){
             var a = newIterator.next();

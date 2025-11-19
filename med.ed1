@@ -1,0 +1,12 @@
+mov a 8 
+mov b 3
+
+
+add a b
+div a 2
+out a
+
+mov c a 
+
+sub c 6
+out c
