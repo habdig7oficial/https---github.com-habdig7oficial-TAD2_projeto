@@ -45,9 +45,41 @@ public class Delete extends BaseHighLevel {
 
              }
 
-        } /*else if(args.length == 2) {
+        } 
+        else if (args.length == 2) {
+    int start = Integer.parseInt(args[0]);
+    int end   = Integer.parseInt(args[1]);
 
-        }*/
+    if (start > end) {
+        throw new Exception("Invalid range: start > end");
+    } else if (getAsmList().getLength() == 0) {
+        throw new Exception("File empty!");
+    } else if (end > getAsmList().getLast().getElement().getLineNumber())
+         throw new Exception("Invalid line range!");
+
+    Node<Instruction> curr = getAsmList().getFirst();
+    Node<Instruction> prev = null;
+
+    while (curr != null && curr.getElement().getLineNumber() < start) {
+        prev = curr;
+        curr = curr.getNext();
+    }
+
+        // Remover todos dentro do intervalo
+    while (curr != null && curr.getElement().getLineNumber() <= end) {
+            curr = curr.getNext();
+        }
+
+        if (prev == null) {
+            getAsmList().setRoot(curr);
+
+            if (curr == null) {
+                getAsmList().clean();
+            }
+        } else {
+            prev.setNext(curr);
+        }
+    }
 
         System.out.println("Lines deleted Successfully");
     }
