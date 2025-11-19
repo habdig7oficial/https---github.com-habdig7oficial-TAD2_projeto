@@ -58,8 +58,8 @@ public class Insert extends BaseHighLevel {
                 }
                 Node<Instruction> e = getAsmList().getFirst();
 
-Node<Instruction> newNode = new Node<>(newInstruction);
-Node<Instruction> head = getAsmList().getFirst();
+                Node<Instruction> newNode = new Node<>(newInstruction);
+                Node<Instruction> head = getAsmList().getFirst();
 
                 if (head == null) {
                     getAsmList().setRoot(newNode);
