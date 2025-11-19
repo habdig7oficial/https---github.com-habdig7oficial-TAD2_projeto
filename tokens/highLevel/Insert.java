@@ -58,14 +58,48 @@ public class Insert extends BaseHighLevel {
                 }
                 Node<Instruction> e = getAsmList().getFirst();
 
-                while (e.getNext() != null && e.getElement().getLineNumber() < e.getNext().getElement().getLineNumber())
-                    e = e.getNext();
+Node<Instruction> newNode = new Node<>(newInstruction);
+Node<Instruction> head = getAsmList().getFirst();
 
-                if (e.getNext() != null && e.getElement().getLineNumber() == e.getNext().getElement().getLineNumber()){
-                    e.setElement(newInstruction);
-                    System.out.println("Line updated");
+                if (head == null) {
+                    getAsmList().setRoot(newNode);
+                    return;
                 }
 
+                Node<Instruction> curr = head;
+                Node<Instruction> prev = null;
+
+                while (curr != null && curr.getElement().getLineNumber() < lineNumber) {
+                    prev = curr;
+                    curr = curr.getNext();
+                }
+
+                if (curr != null && curr.getElement().getLineNumber() == lineNumber) {
+                    curr.setElement(newInstruction);
+                    System.out.println("Line updated");
+                    return;
+                }
+
+                if (prev == null) {
+                    newNode.setNext(head);
+                    getAsmList().setRoot(newNode);
+                    System.out.println("Inserted at the beginning");
+                    return;
+                }
+
+                if (curr != null) {
+                    prev.setNext(newNode);
+                    newNode.setNext(curr);
+                    System.out.println("Inserted in the middle");
+                    return;
+                }
+
+                if (curr == null) {
+                    prev.setNext(newNode);
+                    getAsmList().setLeaf(newNode);             
+                    System.out.println("Inserted at the end");
+                    return;
+                }
 
                 System.out.println(newInstruction);
             } 

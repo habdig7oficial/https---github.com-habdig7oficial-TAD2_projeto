@@ -136,5 +136,9 @@ public class LinkedList <Generic> implements Iterable<Generic> {
     public void setLeaf(Node<Generic> leaf) {
         this.leaf = leaf;
     }
+
+    public void setRoot(Node<Generic> root) {
+        this.root = root;
+    }
 }
 
