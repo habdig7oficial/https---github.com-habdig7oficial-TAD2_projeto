@@ -140,5 +140,8 @@ public class LinkedList <Generic> implements Iterable<Generic> {
     public void setRoot(Node<Generic> root) {
         this.root = root;
     }
+    public void setLength(int length) {
+        this.length = length;
+    }
 }
 

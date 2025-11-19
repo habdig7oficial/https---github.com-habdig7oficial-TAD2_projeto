@@ -84,6 +84,7 @@ Node<Instruction> head = getAsmList().getFirst();
                     newNode.setNext(head);
                     getAsmList().setRoot(newNode);
                     System.out.println("Inserted at the beginning");
+                    getAsmList().setLength(getAsmList().getLength() + 1);
                     return;
                 }
 
@@ -91,6 +92,7 @@ Node<Instruction> head = getAsmList().getFirst();
                     prev.setNext(newNode);
                     newNode.setNext(curr);
                     System.out.println("Inserted in the middle");
+                    getAsmList().setLength(getAsmList().getLength() + 1);
                     return;
                 }
 
@@ -98,6 +100,7 @@ Node<Instruction> head = getAsmList().getFirst();
                     prev.setNext(newNode);
                     getAsmList().setLeaf(newNode);             
                     System.out.println("Inserted at the end");
+                    getAsmList().setLength(getAsmList().getLength() + 1);
                     return;
                 }
 
